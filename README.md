@@ -11,15 +11,22 @@ cp qbittorrentvpn/.env.example qbittorrentvpn/qbittorrentvpn.env
 ```sh
 docker network create torrent-net
 
+# torrent
 docker-compose \
   --env-file global.env \
   --env-file qbittorrentvpn/qbittorrentvpn.env \
   -f qbittorrentvpn/qbittorrentvpn.yml \
   up -d
 
+# servarr stack
 docker-compose \
   --env-file global.env \
-  --env-file servarr/servarr.env \
   -f servarr/servarr.yml \
+  up -d
+
+# jellyfin
+docker-compose \
+  --env-file global.env \
+  -f jellyfin/jellyfin.yml \
   up -d
 ```
